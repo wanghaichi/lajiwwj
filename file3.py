@@ -21,6 +21,8 @@ if (len(sys.argv) >= 2):
         total_sum = 1000
 
 for i in range(1, total_sum):
+    track_str = track_name % (i, i)
+    s = random.randint(1, 10)
     album_str = track_album % (i, i / s + 1)
     album_name_str = album_name % (i / 10 + 1, i / 10 + 1)
     t = random.randint(1, 100)
@@ -37,6 +39,17 @@ for i in range(1, total_sum):
     if (total_sum <= triples_sum):
         break
     triples.append(album_name_str)
+    triples_sum += 1
+    if (total_sum <= triples_sum):
+        break
+    triples.append(track_artist_str)
+    triples_sum += 1
+    if (total_sum <= triples_sum):
+        break
+    triples.append(tag_name_str)
+    triples_sum += 1
+    if (total_sum <= triples_sum):
+        break
 filename = ("music_%d_triples.nt") % (total_sum)
 with open(filename, "w+") as fd:
     fd.write("\n".join(triples))
